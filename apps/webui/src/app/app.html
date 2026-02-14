@@ -1,2 +1,18 @@
-<app-nx-welcome></app-nx-welcome>
-<router-outlet></router-outlet>
+<mat-toolbar class="topbar">
+  <span>WebUI</span>
+</mat-toolbar>
+
+<mat-sidenav-container class="layout">
+  <mat-sidenav mode="side" opened>
+    <mat-nav-list>
+      <a mat-list-item class="active" href="#">Dashboard</a>
+      <a mat-list-item href="#">Users</a>
+      <a mat-list-item href="#">Settings</a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <div class="content">Main content area</div>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

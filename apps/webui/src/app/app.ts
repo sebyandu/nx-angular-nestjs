@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NxWelcome } from './nx-welcome';
+import { MATERIAL_UI_IMPORTS } from './core/material/material.imports';
 
 @Component({
-  imports: [NxWelcome, RouterModule],
+  imports: [RouterModule, ...MATERIAL_UI_IMPORTS],
   selector: 'app-root',
   templateUrl: './app.html',
   styleUrl: './app.scss',
+  standalone: true,
 })
-export class App {
-  protected title = 'webui';
-}
+export class App {}
