@@ -136,12 +136,12 @@ export class HistoryTable implements AfterViewInit {
     this.inflightPages.add(page);
     this.updateLoading(1);
     const queryAtRequest = this.activeQuery;
-    const offset = page * this.pageSize;
+    const skip = page * this.pageSize;
 
     this.dataService
       .fetchWindow({
-        offset,
-        limit: this.pageSize,
+        skip,
+        take: this.pageSize,
         query: queryAtRequest,
       })
       .pipe(
@@ -158,7 +158,7 @@ export class HistoryTable implements AfterViewInit {
 
         this.total$.next(response.total);
         for (let i = 0; i < response.rows.length; i += 1) {
-          this.cache.set(offset + i, response.rows[i]);
+          this.cache.set(skip + i, response.rows[i]);
         }
 
         this.loadedPages.add(page);

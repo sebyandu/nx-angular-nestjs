@@ -10,8 +10,8 @@ export interface HistoryRow {
 }
 
 export interface HistoryWindowRequest {
-  offset: number;
-  limit: number;
+  skip: number;
+  take: number;
   query: string;
 }
 

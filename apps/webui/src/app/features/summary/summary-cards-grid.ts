@@ -135,12 +135,12 @@ export class SummaryCardsGrid implements AfterViewInit {
     this.inflightPages.add(page);
     this.updateLoading(1);
     const queryAtRequest = this.activeQuery;
-    const offset = page * this.pageSize;
+    const skip = page * this.pageSize;
 
     this.dataService
       .fetchWindow({
-        offset,
-        limit: this.pageSize,
+        skip,
+        take: this.pageSize,
         query: queryAtRequest,
       })
       .pipe(
@@ -165,7 +165,7 @@ export class SummaryCardsGrid implements AfterViewInit {
         }
 
         for (let i = 0; i < response.rows.length; i += 1) {
-          nextRows[offset + i] = response.rows[i];
+          nextRows[skip + i] = response.rows[i];
         }
 
         this.loadedPages.add(page);

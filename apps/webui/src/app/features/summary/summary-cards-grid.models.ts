@@ -9,8 +9,8 @@ export interface SummaryRow {
 }
 
 export interface SummaryWindowRequest {
-  offset: number;
-  limit: number;
+  skip: number;
+  take: number;
   query: string;
 }
 
