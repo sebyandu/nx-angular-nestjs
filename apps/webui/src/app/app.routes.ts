@@ -11,8 +11,8 @@ export const appRoutes: Route[] = [
     {
         path: 'summary',
         loadComponent: () =>
-            import('./features/summary/summary-table').then(
-                (m) => m.SummaryTable
+            import('./features/summary/summary-cards-grid').then(
+                (m) => m.SummaryCardsGrid
             ),
     }
 ];

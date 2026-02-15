@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { SummaryTable } from './summary-table';
+import { SummaryCardsGrid } from './summary-cards-grid';
 
-describe('SummaryTable', () => {
-  let component: SummaryTable;
-  let fixture: ComponentFixture<SummaryTable>;
+describe('SummaryCardsGrid', () => {
+  let component: SummaryCardsGrid;
+  let fixture: ComponentFixture<SummaryCardsGrid>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SummaryTable],
+      imports: [SummaryCardsGrid],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(SummaryTable);
+    fixture = TestBed.createComponent(SummaryCardsGrid);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

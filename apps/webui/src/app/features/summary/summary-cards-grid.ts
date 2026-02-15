@@ -1,4 +1,4 @@
-import { AsyncPipe, DatePipe, DecimalPipe, NgIf } from '@angular/common';
+import { AsyncPipe, DatePipe, DecimalPipe } from '@angular/common';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -21,13 +21,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { BehaviorSubject, debounceTime, distinctUntilChanged, finalize } from 'rxjs';
 import { SummaryDataService } from './summary-data.service';
-import { SummaryRow } from './summary-table.models';
+import { SummaryRow } from './summary-cards-grid.models';
 
 @Component({
   standalone: true,
-  selector: 'app-summary-table',
+  selector: 'app-summary-cards-grid',
   imports: [
-    NgIf,
     AsyncPipe,
     DatePipe,
     DecimalPipe,
@@ -41,11 +40,11 @@ import { SummaryRow } from './summary-table.models';
     MatButtonModule,
     MatProgressBarModule,
   ],
-  templateUrl: './summary-table.html',
-  styleUrl: './summary-table.scss',
+  templateUrl: './summary-cards-grid.html',
+  styleUrl: './summary-cards-grid.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SummaryTable implements AfterViewInit {
+export class SummaryCardsGrid implements AfterViewInit {
   @ViewChild(CdkVirtualScrollViewport) viewport?: CdkVirtualScrollViewport;
 
   private readonly dataService = inject(SummaryDataService);

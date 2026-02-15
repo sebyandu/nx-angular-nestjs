@@ -13,28 +13,31 @@
     </mat-form-field>
   </header>
 
-  <mat-progress-bar *ngIf="loading$ | async" mode="indeterminate"></mat-progress-bar>
+  @if (loading$ | async) {
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  }
 
-  <ng-container *ngIf="rows$ | async as rows">
+  @if (rows$ | async; as rows) {
     <cdk-virtual-scroll-viewport class="viewport" [itemSize]="96" (scrolledIndexChange)="onScrollIndex($event)">
       <div class="grid-row" *cdkVirtualFor="let row of rows; trackBy: trackByIndex">
         <mat-card appearance="outlined">
-          <mat-card-content class="row-content" *ngIf="row; else loadingRow">
-            <div class="service">{{ row.service }}</div>
-            <div class="meta">Owner: {{ row.owner }}</div>
-            <div class="meta">Updated: {{ row.updatedAt | date: 'short' }}</div>
-            <div class="status" [attr.data-status]="row.status">{{ row.status }}</div>
-          </mat-card-content>
-          <ng-template #loadingRow>
+          @if (row) {
+            <mat-card-content class="row-content">
+              <div class="service">{{ row.service }}</div>
+              <div class="meta">Owner: {{ row.owner }}</div>
+              <div class="meta">Updated: {{ row.updatedAt | date: 'short' }}</div>
+              <div class="status" [attr.data-status]="row.status">{{ row.status }}</div>
+            </mat-card-content>
+          } @else {
             <mat-card-content class="row-content placeholder">
               <div class="service">Loading...</div>
               <div class="meta">-</div>
               <div class="meta">-</div>
               <div class="status">...</div>
             </mat-card-content>
-          </ng-template>
+          }
         </mat-card>
       </div>
     </cdk-virtual-scroll-viewport>
-  </ng-container>
+  }
 </section>

@@ -5,7 +5,7 @@ import {
   SummaryStatus,
   SummaryWindowRequest,
   SummaryWindowResponse,
-} from './summary-table.models';
+} from './summary-cards-grid.models';
 
 @Injectable({ providedIn: 'root' })
 export class SummaryDataService {
