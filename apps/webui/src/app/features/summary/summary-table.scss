@@ -1,0 +1,80 @@
+.summary-page {
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  gap: 12px;
+}
+
+.summary-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.headline h2 {
+  margin: 0;
+}
+
+.headline p {
+  margin: 4px 0 0;
+  color: var(--mat-sys-on-surface-variant);
+  font-size: 13px;
+}
+
+.summary-header mat-form-field {
+  width: min(420px, 100%);
+  margin-left: auto;
+}
+
+.viewport {
+  height: calc(100vh - 220px);
+}
+
+.grid-row {
+  padding: 8px 4px;
+}
+
+.row-content {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr auto;
+  gap: 12px;
+  align-items: center;
+}
+
+.service {
+  font-weight: 600;
+}
+
+.meta {
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.status {
+  justify-self: end;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.placeholder {
+  opacity: 0.65;
+}
+
+.status[data-status='Healthy'] {
+  background: color-mix(in srgb, var(--mat-sys-primary) 18%, transparent);
+  color: var(--mat-sys-primary);
+}
+
+.status[data-status='Warning'] {
+  background: color-mix(in srgb, var(--mat-sys-tertiary) 22%, transparent);
+  color: var(--mat-sys-tertiary);
+}
+
+.status[data-status='Critical'] {
+  background: color-mix(in srgb, var(--mat-sys-error) 20%, transparent);
+  color: var(--mat-sys-error);
+}

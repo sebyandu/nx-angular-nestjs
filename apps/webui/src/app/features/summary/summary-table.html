@@ -1,0 +1,40 @@
+<section class="summary-page">
+  <header class="summary-header">
+    <div class="headline">
+      <h2>Summary Grid</h2>
+      <p>{{ total$ | async | number }} records</p>
+    </div>
+
+    <button mat-stroked-button type="button" (click)="reload()">Reload</button>
+
+    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+      <mat-label>Filter services</mat-label>
+      <input matInput [formControl]="searchControl" placeholder="Type owner, status or service" />
+    </mat-form-field>
+  </header>
+
+  <mat-progress-bar *ngIf="loading$ | async" mode="indeterminate"></mat-progress-bar>
+
+  <ng-container *ngIf="rows$ | async as rows">
+    <cdk-virtual-scroll-viewport class="viewport" [itemSize]="96" (scrolledIndexChange)="onScrollIndex($event)">
+      <div class="grid-row" *cdkVirtualFor="let row of rows; trackBy: trackByIndex">
+        <mat-card appearance="outlined">
+          <mat-card-content class="row-content" *ngIf="row; else loadingRow">
+            <div class="service">{{ row.service }}</div>
+            <div class="meta">Owner: {{ row.owner }}</div>
+            <div class="meta">Updated: {{ row.updatedAt | date: 'short' }}</div>
+            <div class="status" [attr.data-status]="row.status">{{ row.status }}</div>
+          </mat-card-content>
+          <ng-template #loadingRow>
+            <mat-card-content class="row-content placeholder">
+              <div class="service">Loading...</div>
+              <div class="meta">-</div>
+              <div class="meta">-</div>
+              <div class="status">...</div>
+            </mat-card-content>
+          </ng-template>
+        </mat-card>
+      </div>
+    </cdk-virtual-scroll-viewport>
+  </ng-container>
+</section>
