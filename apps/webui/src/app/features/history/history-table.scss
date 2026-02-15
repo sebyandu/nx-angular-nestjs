@@ -1,0 +1,78 @@
+.history-page {
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  gap: 12px;
+}
+
+.history-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.headline h2 {
+  margin: 0;
+}
+
+.headline p {
+  margin: 4px 0 0;
+  color: var(--mat-sys-on-surface-variant);
+  font-size: 13px;
+}
+
+.history-header mat-form-field {
+  width: min(420px, 100%);
+  margin-left: auto;
+}
+
+.history-viewport {
+  height: calc(100vh - 220px);
+  border: 1px solid var(--mat-sys-outline-variant);
+  border-radius: 12px;
+  overflow: auto;
+}
+
+.history-spacer {
+  position: relative;
+}
+
+.history-table {
+  width: 100%;
+  table-layout: fixed;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.status-pill {
+  display: inline-block;
+  min-width: 68px;
+  text-align: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.status-pill[data-status='Success'] {
+  background: color-mix(in srgb, var(--mat-sys-primary) 18%, transparent);
+  color: var(--mat-sys-primary);
+}
+
+.status-pill[data-status='Pending'] {
+  background: color-mix(in srgb, var(--mat-sys-tertiary) 22%, transparent);
+  color: var(--mat-sys-tertiary);
+}
+
+.status-pill[data-status='Failed'] {
+  background: color-mix(in srgb, var(--mat-sys-error) 20%, transparent);
+  color: var(--mat-sys-error);
+}
+
+.placeholder-row {
+  opacity: 0.65;
+}

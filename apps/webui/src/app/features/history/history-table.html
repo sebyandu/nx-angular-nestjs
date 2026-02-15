@@ -1,0 +1,74 @@
+<section class="history-page">
+  <header class="history-header">
+    <div class="headline">
+      <h2>History Table</h2>
+      <p>{{ total$ | async | number }} records</p>
+    </div>
+
+    <button mat-stroked-button type="button" (click)="reload()">Reload</button>
+
+    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+      <mat-label>Filter history</mat-label>
+      <input matInput [formControl]="searchControl" placeholder="Type event, actor, status" />
+    </mat-form-field>
+  </header>
+
+  @if (loading$ | async) {
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  }
+
+  <cdk-virtual-scroll-viewport
+    class="history-viewport"
+    [itemSize]="64"
+    (scrolledIndexChange)="onScrollIndex($event)"
+  >
+    <div class="history-spacer" [style.height.px]="((total$ | async) ?? 0) * 64">
+      @if (visibleRows$ | async; as rows) {
+      <table
+        mat-table
+        [dataSource]="rows"
+        class="history-table mat-elevation-z1"
+        [style.transform]="'translateY(' + ((visibleOffsetPx$ | async) ?? 0) + 'px)'"
+      >
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>ID</th>
+          <td mat-cell *matCellDef="let row">{{ row.id }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="eventType">
+          <th mat-header-cell *matHeaderCellDef>Event</th>
+          <td mat-cell *matCellDef="let row">{{ row.eventType }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="actor">
+          <th mat-header-cell *matHeaderCellDef>Actor</th>
+          <td mat-cell *matCellDef="let row">{{ row.actor }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="createdAt">
+          <th mat-header-cell *matHeaderCellDef>Created</th>
+          <td mat-cell *matCellDef="let row">
+            @if (row.isPlaceholder) {
+              -
+            } @else {
+              {{ row.createdAt | date: 'short' }}
+            }
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef>Status</th>
+          <td mat-cell *matCellDef="let row">
+            <span class="status-pill" [attr.data-status]="row.status" [class.placeholder]="row.isPlaceholder">
+              {{ row.isPlaceholder ? '...' : row.status }}
+            </span>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns" [class.placeholder-row]="row.isPlaceholder"></tr>
+      </table>
+      }
+    </div>
+  </cdk-virtual-scroll-viewport>
+</section>

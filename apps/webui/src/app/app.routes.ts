@@ -14,5 +14,12 @@ export const appRoutes: Route[] = [
             import('./features/summary/summary-cards-grid').then(
                 (m) => m.SummaryCardsGrid
             ),
+    },
+    {
+        path: 'history',
+        loadComponent: () =>
+            import('./features/history/history-table').then(
+                (m) => m.HistoryTable
+            ),
     }
 ];
