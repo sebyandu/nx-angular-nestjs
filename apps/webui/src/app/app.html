@@ -1,5 +1,15 @@
 <mat-toolbar class="topbar">
   <span>WebUI</span>
+  <span class="spacer"></span>
+  <button
+    mat-icon-button
+    type="button"
+    (click)="onThemeToggle()"
+    [attr.aria-label]="isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'"
+    class="theme-toggle"
+  >
+    <mat-icon aria-hidden="true">{{ isDarkMode ? 'light_mode' : 'dark_mode' }}</mat-icon>
+  </button>
 </mat-toolbar>
 
 <mat-sidenav-container class="layout">

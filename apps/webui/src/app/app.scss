@@ -1,6 +1,31 @@
 .topbar {
+  display: flex;
+  align-items: center;
   background: var(--mat-sys-primary);
   color: var(--mat-sys-on-primary);
+}
+
+.spacer {
+  flex: 1;
+}
+
+.theme-toggle {
+  color: currentColor;
+  border: 1px solid color-mix(in srgb, currentColor 32%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, currentColor 10%, transparent);
+}
+
+html.theme-dark .topbar {
+  background: var(--mat-sys-surface-container-high);
+  color: var(--mat-sys-on-surface);
+  border-bottom: 1px solid var(--mat-sys-outline-variant);
+}
+
+html.theme-dark .theme-toggle {
+  color: var(--mat-sys-primary);
+  border-color: color-mix(in srgb, var(--mat-sys-primary) 38%, transparent);
+  background: color-mix(in srgb, var(--mat-sys-primary) 16%, transparent);
 }
 
 .layout {

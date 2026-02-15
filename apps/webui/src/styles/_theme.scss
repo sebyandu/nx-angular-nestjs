@@ -1,8 +1,8 @@
 @use '@angular/material' as mat;
 
-// Central place to change Material palettes, typography and density.
-$app-material-theme: (
+$light-theme: (
   color: (
+    theme-type: light,
     primary: mat.$azure-palette,
     tertiary: mat.$blue-palette,
   ),
@@ -10,12 +10,28 @@ $app-material-theme: (
   density: 0,
 );
 
-html {
-  @include mat.theme($app-material-theme);
+$dark-theme: (
+  color: (
+    theme-type: dark,
+    primary: mat.$azure-palette,
+    tertiary: mat.$blue-palette,
+  ),
+  typography: Roboto,
+  density: 0,
+);
+
+html,
+html.theme-light {
+  @include mat.theme($light-theme);
+  color-scheme: light;
+}
+
+html.theme-dark {
+  @include mat.theme($dark-theme);
+  color-scheme: dark;
 }
 
 body {
-  color-scheme: light;
   background-color: var(--mat-sys-surface);
   color: var(--mat-sys-on-surface);
   font: var(--mat-sys-body-medium);
